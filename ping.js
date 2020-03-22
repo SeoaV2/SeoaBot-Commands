@@ -10,7 +10,7 @@ class PingCommand extends Command {
 
   async run (_seoa, msg, query) {
     const m = await msg.channel.send('Pinging...')
-    return m.edit(`API: ${Math.round(msg.client.ws.ping)}ms\nComu: ${Math.round(m.createdTimestamp - msg.createdTimestamp)}ms`)
+    return m.edit(`API: ${Math.round(_seoa.ws.ping)}ms\nComu: ${Math.round(m.createdTimestamp - msg.createdTimestamp)}ms`)
   }
 }
 
