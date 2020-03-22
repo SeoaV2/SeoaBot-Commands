@@ -10,13 +10,14 @@ class PingCommand extends Command {
   }
 
   run (_seoa, msg, query) {
-    const limit = isNaN(parseInt(query.args[0])) ? 6 : parseInt(query.args[0])
+    const request = isNaN(parseInt(query.args[0])) ? 6 : parseInt(query.args[0])
     const pings = []
     let count = 1
 
-    msg.channel.send('Idle: ' + (limit / 10) + 's')
+    if (request > 120) return msg.channel.send('Limit: 120, Request: ' + request)
+    msg.channel.send('Idle: ' + (request / 2) + 's')
       .then((m) => {
-        const interval = setInterval(pinging, 100)
+        const interval = setInterval(pinging, 500)
         function pinging () {
           ping('discordapp.com')
             .then(pingThen)
@@ -26,7 +27,7 @@ class PingCommand extends Command {
         function pingThen (res) {
           count++
           pings.push(res.time)
-          if (count > limit) {
+          if (count > request) {
             clearInterval(interval)
             let sum = 0
             pings.sort((left, right) => left - right)
