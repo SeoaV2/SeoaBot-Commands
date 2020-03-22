@@ -1,6 +1,16 @@
-function fnc (_seoa, msg) {
-  msg.channel.send('pong')
+const Command = require('../classes/Command')
+
+class PingCommand extends Command {
+  constructor() {
+    super()
+
+    this.name = 'ping'
+    this.aliases = ['핑']
+  }
+
+  run(seoa, msg, args) {
+    msg.channel.send('pong')
+  }
 }
 
-module.exports = fnc
-module.exports.alias = ['핑', 'ping']
+module.exports = PingCommand
