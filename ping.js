@@ -8,9 +8,15 @@ class PingCommand extends Command {
     this.aliases = ['핑']
   }
 
-  async run (_seoa, msg, query) {
-    const m = await msg.channel.send('Pinging...')
-    return m.edit(`API: ${Math.round(_seoa.ws.ping)}ms\nComu: ${Math.round(m.createdTimestamp - msg.createdTimestamp)}ms`)
+  run (seoa, msg) {
+    msg.channel.send('Pinging...')
+      .then(sendThen)
+
+    function sendThen (m) {
+      const wsPing = 'WebSocket: ' + Math.round(seoa.ws.ping) + 'ms'
+      const msgPing = 'Message: ' + Math.round(m.createdTimestamp - msg.createdTimestamp) + 'ms'
+      m.edit(wsPing + '\n' + msgPing)
+    }
   }
 }
 
