@@ -10,7 +10,7 @@ class InviteCommand extends Command {
   }
 
   run (_seoa, msg, _args) {
-    msg.channel.send('You can invite **SeoaBot** with this link: \nhttps://discordapp.com/oauth2/authorize?client_id=0000000000&permissions=3072&scope=bot\n(Currently not working)')
+    msg.channel.send('You can invite **SeoaBot** with this link: \nhttps://discordapp.com/oauth2/authorize?client_id=569453314551578644&permissions=3072&scope=bot')
   }
 }
 
