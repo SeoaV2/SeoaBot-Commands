@@ -6,7 +6,7 @@ class InviteCommand extends Command {
 
     this.name = 'invite'
     this.description = 'invite bot'
-    this.aliases = ['초대']
+    this.aliases = ['invitelink', '초대', '봇초대', '초대링크', '봇초대링크']
   }
 
   run (_seoa, msg, args) {
