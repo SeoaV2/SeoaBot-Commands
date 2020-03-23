@@ -9,18 +9,23 @@ class ReloadCommand extends Command {
     this.ownerOnly = true
   }
 
-  run (seoa, msg, args) {
-    if (args.args.length < 1) {
-      return msg.reply('Usage:```\n' +
+  async run (seoa, msg, args) {
+    try {
+      if (args.args.length < 1) {
+        return msg.reply('Usage:```\n' +
     seoa.prefix + 'reload <command>\n```')
+      }
+
+      const input = args.args[0]
+      const cmd = seoa.commands.get(input)
+      if (!cmd) return msg.reply('Command `' + input + '` not found.')
+
+      cmd.reload(seoa)
+      return msg.reply('Reloaded `' + cmd.name + '` command.')
+    } catch (err) {
+      console.error(err.stack)
+      return await msg.reply('An error occured while reloading the command: ```\n' + err.message + '\n```')
     }
-
-    const input = args.args[0]
-    const cmd = seoa.commands.get(input)
-    if (!cmd) return msg.reply('Command `' + input + '` not found.')
-
-    cmd.reload(seoa)
-    return msg.reply('Reloaded `' + cmd.name + '` command.')
   }
 }
 
