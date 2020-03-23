@@ -19,7 +19,9 @@ class BotInfoCommand extends Command {
         { name: 'Command Aliases', value: seoa.commands._aliases.size, inline: true },
         { name: 'Servers which I joined', value: seoa.guilds.cache.size, inline: true },
         { name: 'Channels that I can see', value: seoa.channels.cache.size, inline: true },
-        { name: 'Users that I can recognize', value: seoa.users.cache.size, inline: true }
+        { name: 'Users that I can recognize', value: seoa.users.cache.size, inline: true },
+        { name: 'Seoa is created at...', value: new Date(seoa.user.createdAt), inline: true },
+        { name: 'Seoa is running since...', value: seoa.readyAt, inline: true }
       )
 
     return msg.channel.send(embed)
