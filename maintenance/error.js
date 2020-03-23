@@ -1,4 +1,4 @@
-const Command = require('../classes/Command')
+const Command = require('../../classes/Command')
 
 class ErrorCommand extends Command {
   constructor () {

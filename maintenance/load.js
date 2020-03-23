@@ -19,7 +19,11 @@ class LoadCommand extends Command {
       }
 
       const input = args.args[0]
-      const cmd = require(path.join(seoa._path, input + '.js'))
+
+      let cmd
+      try {
+        cmd = require(path.join(seoa._path, input + '.js'))
+      } catch (err) { return await msg.reply('Command `' + input + '` not found.') }
       seoa.commands.register(cmd)
 
       return await msg.reply('Loaded `' + input + '` command.')
