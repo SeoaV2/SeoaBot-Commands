@@ -1,4 +1,4 @@
-const Command = require('../classes/Command.js')
+const Command = require('../../classes/Command.js')
 
 class InviteCommand extends Command {
   constructor () {

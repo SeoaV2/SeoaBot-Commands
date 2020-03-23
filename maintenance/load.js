@@ -1,4 +1,4 @@
-const Command = require('../classes/Command')
+const Command = require('../../classes/Command')
 const path = require('path')
 
 class LoadCommand extends Command {

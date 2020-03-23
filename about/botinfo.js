@@ -1,4 +1,4 @@
-const Command = require('../classes/Command')
+const Command = require('../../classes/Command')
 const { MessageEmbed } = require('discord.js')
 
 class BotInfoCommand extends Command {

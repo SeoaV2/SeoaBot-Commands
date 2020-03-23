@@ -1,4 +1,4 @@
-const Command = require('../classes/Command')
+const Command = require('../../classes/Command')
 
 class UnloadCommand extends Command {
   constructor () {
