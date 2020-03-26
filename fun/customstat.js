@@ -98,7 +98,7 @@ class CustomStatCommand extends Command {
   }
 
   usageDelete (seoa, locale, cmd, cmd2) {
-    return seoa.locale.t('commands.customstat.usage.delete:Usage:```\n%1$s%2$s %3$s <number> [--user (mention)]\n```',locale, seoa.prefix, cmd, cmd2)
+    return seoa.locale.t('commands.customstat.usage.delete:Usage:```\n%1$s%2$s %3$s <number> [--user (mention)]\n```', locale, seoa.prefix, cmd, cmd2)
   }
 }
 
