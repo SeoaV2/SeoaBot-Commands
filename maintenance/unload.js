@@ -20,7 +20,7 @@ class UnloadCommand extends Command {
       if (!cmd) return await msg.reply(seoa.locale.t('commands.unload.cannotfind:Cannot find command `%1$s`.', locale, input))
 
       cmd.unload(seoa)
-      return await msg.reply(seoa.locale.t('commands.unload.unloaded:Unloaded `%1$s` command.', locale, input))
+      return await msg.reply(seoa.locale.t('commands.unload.unloaded:Unloaded `%1$s` command.', locale, cmd.name))
     } catch (err) {
       console.error(err.stack)
       return await msg.reply(seoa.locale.t('commands.unload.error:An Error occured while unloading the command: ```\n%1$s\n```', locale, err.message))
