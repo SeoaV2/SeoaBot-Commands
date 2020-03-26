@@ -10,7 +10,7 @@ class RegisterCommand extends Command {
 
   async run (seoa, msg, _args, locale) {
     const check = await seoa.knex('guild').select('id').where('id', msg.guild.id)
-    if(check.length > 0) return await msg.channel.send(seoa.locale.t('commands.register.alreadyRegistered:This server is already registered.', locale))
+    if (check.length > 0) return await msg.channel.send(seoa.locale.t('commands.register.alreadyRegistered:This server is already registered.', locale))
 
     const mcFilter = (msg) => {
       if (this.author === msg.author.id) {
@@ -32,21 +32,21 @@ class RegisterCommand extends Command {
       } else return false
     }
 
-    const m = await msg.channel.send(seoa.locale.t("commands.register.ask:If you register the server, you agree to providing this server's information to SeoaBot's database.\n"
-    + "Do you agree?", locale))
+    const m = await msg.channel.send(seoa.locale.t("commands.register.ask:If you register the server, you agree to providing this server's information to SeoaBot's database.\n" +
+    'Do you agree?', locale))
 
     try {
       await m.react('✅')
       await m.react('❌')
-    } catch {
+    } catch (err) {
       await msg.channel.send(seoa.locale.t('commands.register.reactFail:Failed to add reaction. Please type your response.', locale))
     }
 
     this.result = null
 
     this.author = msg.author.id
-    const mc = msg.channel.createMessageCollector(mcFilter, {time: 10000})
-    const rc = m.createReactionCollector(rcFilter, {time: 10000})
+    const mc = msg.channel.createMessageCollector(mcFilter, { time: 10000 })
+    const rc = m.createReactionCollector(rcFilter, { time: 10000 })
 
     // Message Collector
     mc.on('collect', () => {
@@ -67,16 +67,16 @@ class RegisterCommand extends Command {
     })
 
     const timeOut = () => {
-      if(this.result == null) {
+      if (this.result == null) {
         msg.channel.send(seoa.locale.t('commands.register.timeOut:Response timed out.', locale))
-        this.result = fals
+        this.result = false
       }
     }
     mc.on('end', timeOut)
     rc.on('end', timeOut)
   }
 
-  async yes(seoa, msg, locale, collector, collector2) {
+  async yes (seoa, msg, locale, collector, collector2) {
     // Registration
     console.log('[Bot Activation] ' + msg.author.tag + ' (' + msg.member.nickname + ') activated the bot in ' + msg.guild.name)
 
@@ -91,7 +91,7 @@ class RegisterCommand extends Command {
     collector2.stop()
   }
 
-  async no(seoa, msg, locale, collector1, collector2) {
+  async no (seoa, msg, locale, collector, collector2) {
     msg.channel.send(seoa.locale.t('commands.register.no:Server registration cancelled.', locale))
     collector.stop()
     collector2.stop()
