@@ -9,22 +9,22 @@ class BotInfoCommand extends Command {
     this.aliases = ['봇정보']
   }
 
-  run (seoa, msg, _args) {
+  async run (seoa, msg, _args, locale) {
     const embed = new MessageEmbed()
-      .setTitle('Information of **Seoa**')
+      .setTitle(seoa.locale.t('commands.botinfo.title:Information of **Seoa**', locale))
       .setThumbnail(seoa.user.avatarURL())
       .addFields(
-        { name: 'Discord Tag', value: seoa.user.tag, inline: true },
-        { name: 'Commands', value: seoa.commands._commands.size, inline: true },
-        { name: 'Command Aliases', value: seoa.commands._aliases.size, inline: true },
-        { name: 'Servers which I joined', value: seoa.guilds.cache.size, inline: true },
-        { name: 'Channels that I can see', value: seoa.channels.cache.size, inline: true },
-        { name: 'Users that I can recognize', value: seoa.users.cache.size, inline: true },
-        { name: 'Seoa is created at...', value: new Date(seoa.user.createdAt), inline: true },
-        { name: 'Seoa is running since...', value: seoa.readyAt, inline: true }
+        { name: seoa.locale.t('commands.botinfo.content.discordTag:Discord Tag', locale), value: seoa.user.tag, inline: true },
+        { name: seoa.locale.t('commands.botinfo.content.commands:Commands', locale), value: seoa.commands._commands.size, inline: true },
+        { name: seoa.locale.t('commands.botinfo.content.aliases:Command Aliases', locale), value: seoa.commands._aliases.size, inline: true },
+        { name: seoa.locale.t('commands.botinfo.content.servers:Servers which I joined', locale), value: seoa.guilds.cache.size, inline: true },
+        { name: seoa.locale.t('commands.botinfo.content.channels:Channels that I can see', locale), value: seoa.channels.cache.size, inline: true },
+        { name: seoa.locale.t('commands.botinfo.content.users:Users that I can recognize', locale), value: seoa.users.cache.size, inline: true },
+        { name: seoa.locale.t('commands.botinfo.content.createdAt:Seoa is created at...', locale), value: new Date(seoa.user.createdAt), inline: true },
+        { name: seoa.locale.t('commands.botinfo.content.readyAt:Seoa is running since...', locale), value: seoa.readyAt, inline: true }
       )
 
-    return msg.channel.send(embed)
+    return await msg.channel.send(embed)
   }
 }
 

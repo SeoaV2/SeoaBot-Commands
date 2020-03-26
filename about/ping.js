@@ -8,13 +8,14 @@ class PingCommand extends Command {
     this.aliases = ['핑']
   }
 
-  run (seoa, msg) {
-    msg.channel.send('Pinging...')
+  async run (seoa, msg, _args, locale) {
+
+    msg.channel.send(seoa.locale.t('commands.ping.pinging:Pinging...', locale))
       .then(sendThen)
 
     function sendThen (m) {
-      const wsPing = 'WebSocket: ' + Math.round(seoa.ws.ping) + 'ms'
-      const msgPing = 'Message: ' + Math.round(m.createdTimestamp - msg.createdTimestamp) + 'ms'
+      const wsPing = seoa.locale.t('commands.ping.websocketPing:WebSocket: %1$sms', locale, Math.round(seoa.ws.ping))
+      const msgPing = seoa.locale.t('commands.ping.msgPing:Message: %1$sms', locale, Math.round(m.createdTimestamp - msg.createdTimestamp))
       m.edit(wsPing + '\n' + msgPing)
     }
   }
