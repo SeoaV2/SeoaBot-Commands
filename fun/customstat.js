@@ -10,9 +10,9 @@ class CustomStatCommand extends Command {
     this.cooldown = 10
   }
 
-  async run (seoa, msg, args, locale) {
-    const arr = args.args
-    if (arr.length < 1) return await msg.reply(this.usage(seoa, locale, args.cmd))
+  async run (seoa, msg, query, locale) {
+    const arr = query.args
+    if (arr.length < 1) return await msg.reply(this.usage(seoa, locale, query.cmd))
 
     const cycler = seoa.extensions.get('Cycles')
     const cmd = arr.shift()
@@ -23,7 +23,7 @@ class CustomStatCommand extends Command {
       case '추가':
       case 'ㅁㅇㅇ':
       case 'cnrk':
-        if (content.length < 1) return await msg.reply(this.usageAdd(seoa, locale, args.cmd, cmd))
+        if (content.length < 1) return await msg.reply(this.usageAdd(seoa, locale, query.cmd, cmd))
 
         cycler.add(content, msg.author.id)
         return await msg.reply(seoa.locale.t('commands.customstat.add:Added bot custom status.', locale))
@@ -65,7 +65,7 @@ class CustomStatCommand extends Command {
       case 'tkrwp':
       case 'ㄱ드ㅐㅍㄷ':
       case 'wprj': {
-        if (arr.length < 1) return await msg.reply(this.usageDelete(seoa, locale, args.cmd, cmd))
+        if (arr.length < 1) return await msg.reply(this.usageDelete(seoa, locale, query.cmd, cmd))
 
         if (isNaN(arr[0])) return await msg.reply(seoa.locale.t('commands.customstat.delete.NaN:Incorrect value. Please enter the number.', locale))
         const num = parseInt(arr[0]) - 1
@@ -85,7 +85,7 @@ class CustomStatCommand extends Command {
       }
 
       default:
-        return await msg.reply(this.usage(seoa, locale, args.cmd))
+        return await msg.reply(this.usage(seoa, locale, query.cmd))
     }
   }
 

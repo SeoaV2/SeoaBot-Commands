@@ -10,13 +10,13 @@ class LoadCommand extends Command {
     this.ownerOnly = true
   }
 
-  async run (seoa, msg, args, locale) {
+  async run (seoa, msg, query, locale) {
     try {
-      if (args.args.length < 1) {
+      if (query.query.length < 1) {
         return await msg.reply(seoa.locale.t('commands.load.usage:Usage: ```\n%1$sload <command>\n```', locale, seoa.prefix))
       }
 
-      const input = args.args[0]
+      const input = query.args[0]
 
       let cmd
       try {

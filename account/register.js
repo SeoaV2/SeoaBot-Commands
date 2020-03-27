@@ -8,8 +8,8 @@ class RegisterCommand extends Command {
     this.aliases = ['가입', 'ㄱㄷ햔ㅅㄷㄱ', 'rkdlq']
   }
 
-  async run (seoa, msg, _args, locale) {
-    const check = await seoa.knex('guild').select('id').where('id', msg.guild.id)
+  async run (seoa, msg, _query, locale) {
+    const check = await seoa.db('guild').select('id').where('id', msg.guild.id)
     if (check.length > 0) return await msg.channel.send(seoa.locale.t('commands.register.alreadyRegistered:This server is already registered.', locale))
 
     const mcFilter = (msg) => {
@@ -80,7 +80,7 @@ class RegisterCommand extends Command {
     // Registration
     console.log('[Bot Activation] ' + msg.author.tag + ' (' + msg.member.nickname + ') activated the bot in ' + msg.guild.name)
 
-    await seoa.knex('guild').insert({
+    await seoa.db('guild').insert({
       id: msg.guild.id,
       locale: 'en_US'
     })

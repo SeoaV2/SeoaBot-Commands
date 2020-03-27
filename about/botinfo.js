@@ -9,7 +9,7 @@ class BotInfoCommand extends Command {
     this.aliases = ['봇정보']
   }
 
-  async run (seoa, msg, _args, locale) {
+  async run (seoa, msg, _query, locale) {
     const embed = new MessageEmbed()
       .setTitle(seoa.locale.t('commands.botinfo.title:Information of **Seoa**', locale))
       .setThumbnail(seoa.user.avatarURL())

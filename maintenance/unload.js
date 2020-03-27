@@ -9,13 +9,13 @@ class UnloadCommand extends Command {
     this.ownerOnly = true
   }
 
-  async run (seoa, msg, args, locale) {
+  async run (seoa, msg, query, locale) {
     try {
-      if (args.args.length < 1) {
+      if (query.query.length < 1) {
         return await msg.reply(seoa.locale.t('commands.unload.usage:Usage: ```\n%1$sunload <command>\n```', locale, seoa.prefix))
       }
 
-      const input = args.args[0]
+      const input = query.args[0]
       const cmd = seoa.commands.get(input)
       if (!cmd) return await msg.reply(seoa.locale.t('commands.unload.cannotfind:Cannot find command `%1$s`.', locale, input))
 

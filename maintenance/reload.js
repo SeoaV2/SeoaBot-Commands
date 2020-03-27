@@ -9,13 +9,13 @@ class ReloadCommand extends Command {
     this.ownerOnly = true
   }
 
-  async run (seoa, msg, args, locale) {
+  async run (seoa, msg, query, locale) {
     try {
-      if (args.args.length < 1) {
+      if (query.query.length < 1) {
         return msg.reply(seoa.locale.t('commands.reload.usage:Usage:```\n%1$sreload <command>\n```', locale, seoa.prefix))
       }
 
-      const input = args.args[0]
+      const input = query.args[0]
       const cmd = seoa.commands.get(input)
       if (!cmd) return msg.reply(seoa.locale.t('commands.reload.cannotfind:Cannot find command `%1$s`.', locale, input))
 

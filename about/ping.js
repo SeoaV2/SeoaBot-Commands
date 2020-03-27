@@ -8,7 +8,7 @@ class PingCommand extends Command {
     this.aliases = ['핑']
   }
 
-  async run (seoa, msg, _args, locale) {
+  async run (seoa, msg, _query, locale) {
     msg.channel.send(seoa.locale.t('commands.ping.pinging:Pinging...', locale))
       .then(sendThen)
 
