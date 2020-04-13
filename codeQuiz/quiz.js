@@ -23,7 +23,7 @@ class QuizCommand extends Command {
     const embed = new MessageEmbed()
       .setColor(0xff09b0)
       .setImage(quiz.image)
-      .setDescription('[Request a new quiz • Report quiz error](%1$s)', locale, 'https://github.com/SeoaV2/SeoaBot-CodeQuiz/issues/new/choose')
+      .setDescription(seoa.locale.t('commands.codequiz.issue:[`Quiz Request, Report`](%1$s)', locale, 'https://github.com/SeoaV2/SeoaBot-CodeQuiz/issues/new/choose'))
       .addField(seoa.locale.t('commands.codequiz.quiztitle:Q%1$s. about %2$s', locale, quiz.id, quiz.language), quiz.question.split('{username}').join('<@' + msg.author.id + '>'))
 
     msg.channel.send(embed)

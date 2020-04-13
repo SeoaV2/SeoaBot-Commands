@@ -18,13 +18,13 @@ class LeaderBoardCommand extends Command {
     cqExt.getLeaderboard().then((e) => {
       const embed = new MessageEmbed()
         .setColor(0xff09b0)
-        .setTitle(seoa.locale.t('command.codequiz.leaderboard.title:Code Quiz Leaderboard', locale))
+        .setTitle(seoa.locale.t('commands.codequiz.leaderboard.title:Code Quiz Leaderboard', locale))
 
       let temp = '```fix\n'
       e.forEach((v, i) => {
         const surfix = ['st', 'nd', 'rd'] // 1st, 2nd, 3rd
         temp += seoa.locale.t(
-          'command.codequiz.leaderboard.item:%1$s%2$s: %3$s (%4$s score)\n',
+          'commands.codequiz.leaderboard.item:%1$s%2$s: %3$s (%4$s score)\n',
           locale,
           i + 1,
           surfix[i] || 'th', // if korean, do not need to use this
