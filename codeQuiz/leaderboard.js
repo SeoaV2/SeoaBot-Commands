@@ -1,4 +1,5 @@
 const Command = require('../../classes/Command')
+const { table } = require('table')
 const { MessageEmbed } = require('discord.js')
 
 class LeaderBoardCommand extends Command {
@@ -19,21 +20,19 @@ class LeaderBoardCommand extends Command {
       const embed = new MessageEmbed()
         .setColor(0xff09b0)
         .setTitle(seoa.locale.t('commands.codequiz.leaderboard.title:Code Quiz Leaderboard', locale))
+        .setTimestamp(new Date())
 
-      let temp = '```fix\n'
+      let myrank
+      const temp = []
+      const option = { columns: [{ alignment: 'right' }, { alignment: 'left', width: 12 }, { alignment: 'center' }, { alignment: 'center' }] }
+
       e.forEach((v, i) => {
-        const surfix = ['st', 'nd', 'rd'] // 1st, 2nd, 3rd
-        temp += seoa.locale.t(
-          'commands.codequiz.leaderboard.item:%1$s%2$s: %3$s (%4$s score)\n',
-          locale,
-          i + 1,
-          surfix[i] || 'th', // if korean, do not need to use this
-          seoa.users.resolve(v.id).username,
-          v.score
-        )
+        const user = seoa.users.resolve(v.id)
+        if (v.id === msg.author.id) myrank = i + 1
+        temp.push(['#' + (i + 1), (user.username.length > 12 ? user.username.substring(0, 11) + '-' : user.username), v.score + ' score', v.solved + ' quizs'])
       })
 
-      embed.setDescription(temp + '```')
+      embed.setDescription('```fix\n' + table(temp, option) + '```' + (myrank ? 'My rank is `#' + myrank + '`' : ''))
 
       msg.channel.send(embed)
     })
