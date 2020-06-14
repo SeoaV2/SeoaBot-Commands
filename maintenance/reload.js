@@ -11,7 +11,7 @@ class ReloadCommand extends Command {
 
   async run (seoa, msg, query, locale) {
     try {
-      if (query.query.length < 1) {
+      if (query.args.length < 1) {
         return msg.reply(seoa.locale.t('commands.reload.usage:Usage:```\n%1$sreload <command>\n```', locale, seoa.prefix))
       }
 
