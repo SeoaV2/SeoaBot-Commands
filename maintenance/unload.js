@@ -11,7 +11,7 @@ class UnloadCommand extends Command {
 
   async run (seoa, msg, query, locale) {
     try {
-      if (query.query.length < 1) {
+      if (query.args.length < 1) {
         return await msg.reply(seoa.locale.t('commands.unload.usage:Usage: ```\n%1$sunload <command>\n```', locale, seoa.prefix))
       }
 

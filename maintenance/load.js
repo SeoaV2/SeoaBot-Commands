@@ -12,7 +12,7 @@ class LoadCommand extends Command {
 
   async run (seoa, msg, query, locale) {
     try {
-      if (query.query.length < 1) {
+      if (query.args.length < 1) {
         return await msg.reply(seoa.locale.t('commands.load.usage:Usage: ```\n%1$sload <command>\n```', locale, seoa.prefix))
       }
 
